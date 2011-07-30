@@ -5,7 +5,7 @@ utf16_to_utf8/1, utf16Hex_to_utf8/1, charToInt/1, hasProcess/1, hasTable/1,
 surrogate/1, surrogateInt/1, convert10/1,getNextCharAsInt/1,
 bocu/1, convertEncoding/2, oneByte_to_utf8/1, utf8_to_oneByte/2,
 format/1, print/2, print/1, fwrite/2, test/1, hexString_to_List/1,
-init/0, reset/0, latin1L/0, utf8_to_oneByte/2,
+init/0, reset/0, latin1L/0, 
 loadNorm/0, convert16To1oInt/1, hexString2Int/1, getNFC/1, getNFD/1, getNFKC/1, getNFKD/1,
 lowercase/1, uppercase/1]).
 
@@ -344,7 +344,7 @@ hexString_to_List(Code) ->
 %% * new(Params*)                               %%
 %%   Params optional, defaults to utf8          %%
 %% * <encoding>_to_<encoding>(MBString)         %%
-%% * convertEncoding(MBString,NewEncoding)      %%
+%% * convertEncoding(MBString, NewEncoding)     %%
 %%                                              %%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 

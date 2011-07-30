@@ -62,7 +62,6 @@ getNextChar({shiftjis, String}) ->
 
 getNextChar({Encoding, String}) ->
 %% Assuming here one-byte encodings
-io:format("%% Assuming here one-byte encodings~n",[]),
   {S1, Tring1} = split_binary(String, 1),
   {{Encoding, S1}, {Encoding, Tring1}}.
 

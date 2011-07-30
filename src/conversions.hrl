@@ -59,10 +59,11 @@ utf8_to_oneByte(String, Acc, EncTable, Encoding) ->
   end.
 
 lookup(X, EncTable) ->
-  XX=binary_to_list(X),
-  lookup(XX, EncTable, 0).
-lookup(X, [], Acc) -> Acc;
-lookup(X, [X|T], Acc) -> list_to_binary([Acc+128]);
+%%  XX=binary_to_list(X),
+  lookup(X, EncTable, 0).
+lookup(X, [], Acc) -> "ǂ";
+lookup(X, [X|T], Acc) ->
+  list_to_binary([Acc+128]);
 lookup(X, [H|T], Acc) ->
   lookup(X, T, Acc+1).
 
@@ -163,7 +164,7 @@ utf82utf16(A,L,D) when L < 33 ->
   [NN1, NN2, NN3].
 
 %% Fix This Code!
-%% Doesn't seem to produce the expected result ?!?
+%% Doesn't seem to produce the expected result?!?
 %% Maybe make a table from NormalizationText.txt
 %% Should be easier...
 surrogate(CP) ->

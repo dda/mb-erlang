@@ -48,7 +48,12 @@ test(strLength) ->
   C = <<"à prendre">>,
   D = << A/binary, B/binary, C/binary >>,
   teststrLength(D),
-  teststrLength("¦廣東話	好好");
+  teststrLength("¦廣東話	好好"),
+  E = new(A),
+  io:format("E = ~w~n", [E]),
+  F = convertEncoding(E, latin1),
+  io:format("F = ~w~n", [F]),
+  teststrLength(F);
   
 test(hanzi) ->
   file:delete("tests/KanjiTest.html"),
@@ -195,7 +200,6 @@ teststrLength(X) when list(X) ->
   io:format("strLength(~s) = ~.10B.~n", [X, L]);
 
 teststrLength(X) when binary(X) ->
-  io:format("binary~n"),
   TestString=new(X, utf8),
   L=strLength(TestString),
   file:write_file("tests/strLength.html", "<p>strLenght(", [append]),
@@ -203,7 +207,21 @@ teststrLength(X) when binary(X) ->
   file:write_file("tests/strLength.html", ")=", [append]),
   file:write_file("tests/strLength.html", list_to_binary(integer_to_list(L)), [append]),
   file:write_file("tests/strLength.html", "</p>\n", [append]),
-  io:format("strLength(~s) = ~.10B.~n", [X, strLength(TestString)]).
+  io:format("strLength(~s) = ~.10B.~n", [X, strLength(TestString)]);
+
+teststrLength({Encoding, TestString}) when binary(TestString) ->
+  L=strLength({Encoding, TestString}),
+  file:write_file("tests/strLength.html", "<p>strLenght(", [append]),
+  {utf8, TestStringutf8}=convertEncoding({Encoding, TestString}, utf8),
+  file:write_file("tests/strLength.html", TestStringutf8, [append]),
+  file:write_file("tests/strLength.html", ")[", [append]),
+  file:write_file("tests/strLength.html", atom_to_list(Encoding), [append]),
+  file:write_file("tests/strLength.html", "]=", [append]),
+  file:write_file("tests/strLength.html", list_to_binary(integer_to_list(L)), [append]),
+  file:write_file("tests/strLength.html", "</p>\n", [append]),
+  io:format("strLength(~s) = ~.10B.~n", [TestStringutf8, L]).
+
+
 
 
 
