@@ -1,0 +1,3 @@
+Considering the lack of enthusiasm of the Erlang community on having proper string functions, I hacked my own. I only recently started hacking at it again, after leaving the project dormant for a few years – the project was originally received with derision and incomprehension "we don't need strings: lists of integers are fine"...
+
+So to quote Brad Pitt in "twelve monkeys": Fuck the bozos!
